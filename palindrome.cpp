@@ -1,5 +1,6 @@
 #include "cmdLine.h"
 #include "trie.h"
+#include <algorithm>
 #include <cassert>
 #include <ctime>
 #include <fstream>
@@ -164,8 +165,8 @@ void RandSearch(std::set<std::string>& palindromes, const std::string& startFor,
   }
 
   //Initialize distributions
-  const std::uniform_int_distribution<int> randIx(0, NUM_LETTERS - 1);
-  const std::uniform_real_distribution<float> rand(0.0f, 1.0f);
+  std::uniform_int_distribution<int> randIx(0, NUM_LETTERS - 1);
+  std::uniform_real_distribution<float> rand(0.0f, 1.0f);
   Trie* tri_for;
   Trie* tri_bac;
 
