@@ -3,6 +3,8 @@ This tool helps create palindromes by brute-forcing all continuations from any s
 For more information of how the software functions see this [YouTube Video](https://youtu.be/ap08_AGPh8s).
 
 ## How to use
+Mac and Linux users: run `make` to compile the executable for Unix-based systems.
+
 Text is inputted by passing an uppercase string with `-t` that contains a `|` separator in the center.
 This will generally look something like this: `t="WAS|SAW"`. Do not add punctuation.
 The palindrome normally build from the outside to the center, but this can be reversed using `-r`.
