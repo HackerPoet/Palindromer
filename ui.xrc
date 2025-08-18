@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc">
+  <object class="wxFrame" name="MainFrameBaseClass">
+    <title>
+      <![CDATA[Palindromer]]>
+    </title>
+    <centered>1</centered>
+    <style>wxCAPTION|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxCLOSE_BOX</style>
+    <size>500,300</size>
+    <object class="wxBoxSizer">
+      <orient>wxVERTICAL</orient>
+      <object class="sizeritem" name="flexGridSizer1">
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxFlexGridSizer">
+          <cols>3</cols>
+          <rows>0</rows>
+          <vgap>0</vgap>
+          <hgap>0</hgap>
+          <growablecols>0,1</growablecols>
+          <growablerows/>
+          <object class="sizeritem">
+            <flag>wxALL|wxEXPAND</flag>
+            <border>5</border>
+            <option>1</option>
+            <object class="wxTextCtrl" name="forTextCtrl">
+              <style/>
+              <hint>
+                <![CDATA[start text]]>
+              </hint>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <flag>wxALL|wxEXPAND</flag>
+            <border>5</border>
+            <option>1</option>
+            <object class="wxTextCtrl" name="bacTextCtrl">
+              <style/>
+              <hint>
+                <![CDATA[end text]]>
+              </hint>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="searchButton">
+              <label>Search</label>
+              <style/>
+              <bitmapposition>wxLEFT</bitmapposition>
+              <default>0</default>
+            </object>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem" name="flexGridSizer2">
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxFlexGridSizer">
+          <cols>3</cols>
+          <rows>0</rows>
+          <vgap>0</vgap>
+          <hgap>0</hgap>
+          <growablecols/>
+          <growablerows/>
+          <object class="sizeritem">
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="backButton">
+              <label>&lt;- Back</label>
+              <style/>
+              <enabled>0</enabled>
+              <bitmapposition>wxLEFT</bitmapposition>
+              <default>0</default>
+            </object>
+          </object>
+          <object class="sizeritem">
+            <flag>wxALL</flag>
+            <border>5</border>
+            <object class="wxButton" name="fwdButton">
+              <label>Fwd -&gt;</label>
+              <style/>
+              <enabled>0</enabled>
+              <bitmapposition>wxLEFT</bitmapposition>
+              <default>0</default>
+            </object>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem" name="boxSizer3">
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
+        <object class="wxBoxSizer">
+          <orient>wxHORIZONTAL</orient>
+          <object class="sizeritem">
+            <flag>wxALL</flag>
+            <border>5</border>
+            <option>1</option>
+            <object class="wxTextCtrl" name="palindromeTextCtrl">
+              <style>wxTE_WORDWRAP|wxTE_READONLY|wxTE_MULTILINE|wxBORDER_NONE</style>
+              <hidden>1</hidden>
+            </object>
+          </object>
+        </object>
+      </object>
+      <object class="sizeritem" name="boxSizer2">
+        <flag>wxALL|wxEXPAND</flag>
+        <border>5</border>
+        <option>1</option>
+        <object class="wxBoxSizer">
+          <orient>wxVERTICAL</orient>
+          <object class="sizeritem">
+            <flag>wxALL|wxEXPAND</flag>
+            <border>5</border>
+            <option>1</option>
+            <object class="wxListCtrl" name="listCtrl">
+              <style>wxLC_NO_HEADER|wxLC_ALIGN_LEFT|wxLC_ALIGN_TOP|wxLC_REPORT</style>
+              <object class="listcol">
+                <text>
+                  <![CDATA[Beginning]]>
+                </text>
+                <width>-1</width>
+              </object>
+              <object class="listcol">
+                <text>
+                  <![CDATA[End]]>
+                </text>
+                <width>-1</width>
+              </object>
+            </object>
+          </object>
+          <object class="sizeritem" name="boxSizer4">
+            <flag>wxALL|wxEXPAND|wxALIGN_RIGHT</flag>
+            <border>5</border>
+            <object class="wxBoxSizer">
+              <orient>wxHORIZONTAL</orient>
+              <object class="sizeritem">
+                <flag>wxALL</flag>
+                <border>5</border>
+                <object class="wxButton" name="prevPageButton">
+                  <label>&lt;</label>
+                  <style/>
+                  <hidden>1</hidden>
+                  <enabled>0</enabled>
+                  <bitmapposition>wxLEFT</bitmapposition>
+                  <default>0</default>
+                </object>
+              </object>
+              <object class="sizeritem">
+                <flag>wxALL</flag>
+                <border>5</border>
+                <object class="wxButton" name="nextPageButton">
+                  <label>&gt;</label>
+                  <style/>
+                  <hidden>1</hidden>
+                  <enabled>0</enabled>
+                  <bitmapposition>wxLEFT</bitmapposition>
+                  <default>0</default>
+                </object>
+              </object>
+            </object>
+          </object>
+        </object>
+      </object>
+    </object>
+  </object>
+</resource>
