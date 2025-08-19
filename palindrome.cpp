@@ -9,6 +9,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <random>
+#include <algorithm>
 
 //=====  Brute-force parameters  =====
 #define MAX_PALINDROMES 2000000

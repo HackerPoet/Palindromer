@@ -73,7 +73,7 @@ int main(int argc, const char* argv[]) {
   for (const std::string& str : palindromes) {
     if (reverse_search) {
       const size_t ix = str.find_first_of('|');
-      fout << "|" << str.substr(ix + 1, str.length() - ix - 1) << startBac << startFor << str.substr(0, ix) << "|" << std::endl;
+      fout << "|" << str.substr(ix + 1, str.length() - ix - 1) << startBac << " " << startFor << str.substr(0, ix) << "|" << std::endl;
     } else {
       fout << startFor << str << startBac << std::endl;
     }

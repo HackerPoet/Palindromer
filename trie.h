@@ -20,8 +20,8 @@ public:
     }
 
   private:
-    int ix;
     Trie** n;
+    int ix;
   };
 
   class CircIter {
@@ -40,9 +40,9 @@ public:
     }
 
   private:
+    Trie** n;
     int endIx;
     int ix;
-    Trie** n;
   };
 
   class PalIter {
@@ -63,9 +63,9 @@ public:
     }
 
   private:
-    int ix;
     Trie** triFor;
     Trie** triBac;
+    int ix;
   };
 
   Trie(Trie* _parent = nullptr);
@@ -105,6 +105,6 @@ public:
   //}
 
   Trie* nodes[NUM_LETTERS];
-  Trie* parent;
   bool isWord;
+  Trie* parent;
 };
