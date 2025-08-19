@@ -208,11 +208,8 @@ void Frame::Search() {
     SetStatusText("Generating palindromes...");
 
     BruteSearch(palindromes, startFor, startBac);
-
     
     listCtrl->DeleteAllItems();
-    double show_pct = 1.0;
-    std::uniform_real_distribution<float> rand(0.0f, 1.0f);
 
     if (palindromes.size() > MAX_DISPLAY) {
         prevPageButton->Show();
@@ -231,7 +228,7 @@ void Frame::Search() {
 }
 
 void Frame::DisplayList() {
-    for (int i = pageNo * MAX_DISPLAY; i < resultList.size() && i < (pageNo + 1) * MAX_DISPLAY; i++) {
+    for (int i = pageNo * MAX_DISPLAY; i < static_cast<int>(resultList.size()) && i < (pageNo + 1) * MAX_DISPLAY; i++) {
         std::string palindrome = resultList[i];
         int delim = palindrome.find("|", 0);
         std::string str1 = startFor + palindrome.substr(0, delim);
@@ -257,7 +254,7 @@ void Frame::PrevPage(wxCommandEvent& event) {
 void Frame::NextPage(wxCommandEvent& event) {
     pageNo++;
     prevPageButton->Enable();
-    if ((pageNo + 1) * MAX_DISPLAY > resultList.size()) {
+    if (static_cast<size_t>((pageNo + 1) * MAX_DISPLAY) > resultList.size()) {
         nextPageButton->Disable();
     }
     DisplayList();
