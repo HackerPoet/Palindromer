@@ -8,10 +8,13 @@ For more information of how the software functions see this [YouTube Video](http
 To build on Linux or macOS, use the provided Makefile:
 
 ```bash
-make                # Build the palindromer executable
-make clean          # Remove compiled files
-make install        # Install to /usr/local/bin (requires sudo)
-make help           # Show available targets
+make                     # Build the palindromer executables
+make palindromer         # Build command line app only
+make palindromer-visual  # Build the visual app only
+make clean               # Remove compiled files
+make install             # Install to /usr/local/bin (requires sudo)
+make install-visual      # Install GUI to /user/local/bin (requires sudo)
+make help                # Show available targets
 ```
 
 ### VS Code
@@ -21,8 +24,6 @@ If using VS Code, you can build the project using the integrated build task:
 - Select "Build Palindromer"
 
 ## How to use
-Mac and Linux users: run `make` to compile the executable for Unix-based systems.
-
 Text is inputted by passing an uppercase string with `-t` that contains a `|` separator in the center.
 This will generally look something like this: `t="WAS|SAW"`. Do not add punctuation.
 The palindrome normally build from the outside to the center, but this can be reversed using `-r`.
@@ -37,6 +38,10 @@ inspiration to get started. To use Monte-Carlo search add `-m` to the command.
 
 Palindromer by default uses `dictionary.txt` as the dictionary and `palindromes.txt` as the output file.
 This can be changed with `-d="your_dictionary.txt"` and `-o="output_name.txt"`.
+
+## GUI
+The visual app can be used to navigate palindromes more quickly by clicking on the desired contination.
+To open the GUI, run `./palindromer-visual` after having run `make palindromer-visual`.
 
 ## An Example
 Start with a list of all start and end palindrome pairs:

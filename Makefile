@@ -32,7 +32,10 @@ install-visual: $(GUI_TARGET)
 .PHONY: help
 help:
 	@echo "Available targets:"
-	@echo "  all     - Build the palindromer executable"
-	@echo "  clean   - Remove compiled files"
-	@echo "  install - Install to /usr/local/bin (requires sudo)"
-	@echo "  help    - Show this help message"
+	@echo "  all                - Build the palindromer executables"
+	@echo "  palindromer        - Build the command line app only"
+	@echo "  palindromer-visual - Build the visual app only"
+	@echo "  clean              - Remove compiled files"
+	@echo "  install            - Install command line app to /usr/local/bin (requires sudo)"
+	@echo "  install-visual     - Install visual app to /user/local/bin (requires sudo)"
+	@echo "  help               - Show this help message"
