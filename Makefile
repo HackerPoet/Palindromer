@@ -21,7 +21,7 @@ $(GUI_TARGET): $(GUI_SOURCES)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(TARGET)
+	rm -f $(OBJECTS) $(TARGET) $(GUI_TARGET)
 
 install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/
