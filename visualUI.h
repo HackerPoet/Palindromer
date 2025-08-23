@@ -1,5 +1,7 @@
 #include <deque>
 #include <thread>
+#include <future>
+#include <set>
 #include <wx/wx.h>
 #include <wx/app.h>
 #include <wx/settings.h>
@@ -28,8 +30,10 @@ class Frame : public wxFrame {
               const wxSize& size = wxSize(500,300),
               long style = wxCAPTION|wxRESIZE_BORDER|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxCLOSE_BOX);
         virtual ~Frame();
-        
+
         void OnDictionaryLoaded(bool success);
+        void SetPalindromes(std::set<std::string> palindromes);
+        void OnSearchDone(wxCommandEvent& event);
     
     protected:
         wxTextCtrl* forTextCtrl;
@@ -41,6 +45,10 @@ class Frame : public wxFrame {
         wxListCtrl* listCtrl;
         wxButton* prevPageButton;
         wxButton* nextPageButton;
+
+        std::future<void> searchFuture;
+        std::future<void> pollFuture;
+        bool searching = false;
     
     private:
         void OnSearch(wxCommandEvent&);
@@ -56,6 +64,7 @@ class Frame : public wxFrame {
         std::deque<std::pair<std::string, std::string>> fwdStack;
         std::string startFor;
         std::string startBac;
+        std::set<std::string> palindromes;
         std::vector<std::string> resultList;
         int pageNo;
 };

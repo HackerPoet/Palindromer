@@ -1,7 +1,24 @@
+#include <future>
 #include "visualUI.h"
 #include "palindrome.cpp"
 
 #define MAX_DISPLAY 200
+
+wxDEFINE_EVENT(SEARCH_DONE, wxCommandEvent);
+
+void DoSearch(Frame* frame, const std::string& startFor, const std::string& startBac,
+    std::function<void(std::set<std::string>&, const std::string&, const std::string&)> searchFunc) {
+
+    std::set<std::string> palindromes;
+    std::future<void> fut = std::async(std::launch::async, searchFunc, std::ref(palindromes), startFor, startBac);
+    std::future_status status;
+    do {
+        status = fut.wait_for(std::chrono::milliseconds(10));
+    } while (status != std::future_status::ready);
+
+    frame->SetPalindromes(palindromes);
+    wxPostEvent(frame, wxCommandEvent(SEARCH_DONE));
+}
 
 bool VisualUI::OnInit() {
     wxXmlResource::Get()->InitAllHandlers();
@@ -115,16 +132,15 @@ Frame::Frame(wxWindow* parent, wxWindowID id, const wxString& title, const wxPoi
     listCtrl->Bind(wxEVT_COMMAND_LIST_ITEM_SELECTED, &Frame::OnItemSelected, this);
     prevPageButton->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &Frame::PrevPage, this);
     nextPageButton->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &Frame::NextPage, this);
+    Bind(SEARCH_DONE, &Frame::OnSearchDone, this);
 
     CreateStatusBar();
     SetStatusText("Loading dictionary...");
-    
 }
 
 Frame::~Frame() {
     backButton->Unbind(wxEVT_COMMAND_BUTTON_CLICKED, &Frame::OnBack, this);
     fwdButton->Unbind(wxEVT_COMMAND_BUTTON_CLICKED, &Frame::OnForward, this);
-    
 }
 
 void Frame::OnDictionaryLoaded(bool success) {
@@ -193,7 +209,6 @@ void Frame::OnSearch(wxCommandEvent&) {
     startFor = forTextCtrl->GetValue().ToStdString();
     startBac = bacTextCtrl->GetValue().ToStdString();
     backStack.push_back(std::make_pair(startFor, startBac));
-    backButton->Enable();
     fwdStack.clear();
     fwdButton->Disable();
 
@@ -201,16 +216,30 @@ void Frame::OnSearch(wxCommandEvent&) {
 }
 
 void Frame::Search() {
-    std::set<std::string> palindromes;
+    if (searching) {
+        return;
+    }
+    SetStatusText("Generating palindromes...");
+    searching = true;
+    searchButton->Disable();
+    searchFuture = std::async(std::launch::async, DoSearch, this, startFor, startBac, BruteSearch);
+    
     palindromeTextCtrl->ChangeValue(startFor + " " + startBac);
     palindromeTextCtrl->Show();
     SendSizeEvent();
-    SetStatusText("Generating palindromes...");
-
-    BruteSearch(palindromes, startFor, startBac);
-    
     listCtrl->DeleteAllItems();
+}
 
+void Frame::SetPalindromes(std::set<std::string> p) {
+    palindromes = p;
+}
+
+void Frame::OnSearchDone(wxCommandEvent& WXUNUSED(event)) {
+    searching = false;
+    searchButton->Enable();
+    backButton->Enable();
+    SetStatusText(wxString::Format("Found %zu possibilities", palindromes.size()));
+    
     if (palindromes.size() > MAX_DISPLAY) {
         prevPageButton->Show();
         nextPageButton->Show();
@@ -223,7 +252,6 @@ void Frame::Search() {
     }
     resultList.assign(palindromes.begin(), palindromes.end());
     pageNo = 0;
-    SetStatusText(wxString::Format("Found %zu possibilities", palindromes.size()));
     DisplayList();
 }
 
@@ -242,7 +270,7 @@ void Frame::DisplayList() {
     listCtrl->SetColumnWidth(1, wxLIST_AUTOSIZE);
 }
 
-void Frame::PrevPage(wxCommandEvent& event) {
+void Frame::PrevPage(wxCommandEvent& WXUNUSED(event)) {
     pageNo--;
     nextPageButton->Enable();
     if (pageNo == 0) {
@@ -251,7 +279,7 @@ void Frame::PrevPage(wxCommandEvent& event) {
     DisplayList();
 }
 
-void Frame::NextPage(wxCommandEvent& event) {
+void Frame::NextPage(wxCommandEvent& WXUNUSED(event)) {
     pageNo++;
     prevPageButton->Enable();
     if (static_cast<size_t>((pageNo + 1) * MAX_DISPLAY) > resultList.size()) {
@@ -259,4 +287,5 @@ void Frame::NextPage(wxCommandEvent& event) {
     }
     DisplayList();
 }
+
 wxIMPLEMENT_APP(VisualUI);
