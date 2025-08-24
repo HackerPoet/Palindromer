@@ -146,7 +146,7 @@
   <ItemGroup>
     <ClCompile Include="cmdLine.cpp" />
     <ClCompile Include="trie.cpp" />
-    <ClCompile Include="palindrome.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cmdLine.h" />
