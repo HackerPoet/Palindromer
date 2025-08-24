@@ -39,10 +39,6 @@ inspiration to get started. To use Monte-Carlo search add `-m` to the command.
 Palindromer by default uses `dictionary.txt` as the dictionary and `palindromes.txt` as the output file.
 This can be changed with `-d="your_dictionary.txt"` and `-o="output_name.txt"`.
 
-## GUI
-The visual app can be used to navigate palindromes more quickly by clicking on the desired contination.
-To open the GUI, run `./palindromer-visual` after having run `make palindromer-visual`.
-
 ## An Example
 Start with a list of all start and end palindrome pairs:
 
@@ -64,3 +60,13 @@ Next let's continue with: `NOTE NO ERASER |RES ARE ONE TON`.
 
 Lastly, I find a way to finish the sentence with `NOTE: NO ERASER OF ORES ARE ONE TON.`
 It may not be very meaningful, but the whole process took under 10 minutes.
+
+## GUI
+The visual app can be used to navigate palindromes more quickly by clicking on the desired contination.
+
+### Windows
+Use `PalindromerVisual.exe` to open the application.
+
+### Linux/macOS
+Visit https://github.com/wxWidgets/wxWidgets to install wxWidgets onto your local machine.
+Build with `make palindromer-visual` and run with `./palindromer-visual`.
