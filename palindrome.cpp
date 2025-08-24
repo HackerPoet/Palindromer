@@ -21,7 +21,7 @@
 //Max possible length
 #define MAX_LENGTH 120
 //Max number to generate
-#define MAX_ITERS_GEN 1000000
+#define MAX_ITERS_GEN 10000000
 //Probability of continuing if this is a word
 #define PROB_CONT 0.75f
 
