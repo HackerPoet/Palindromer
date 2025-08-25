@@ -8,10 +8,13 @@ For more information of how the software functions see this [YouTube Video](http
 To build on Linux or macOS, use the provided Makefile:
 
 ```bash
-make                # Build the palindromer executable
-make clean          # Remove compiled files
-make install        # Install to /usr/local/bin (requires sudo)
-make help           # Show available targets
+make                     # Build the palindromer executables
+make palindromer         # Build command line app only
+make palindromer-visual  # Build the visual app only
+make clean               # Remove compiled files
+make install             # Install to /usr/local/bin (requires sudo)
+make install-visual      # Install GUI to /user/local/bin (requires sudo)
+make help                # Show available targets
 ```
 
 ### VS Code
@@ -57,3 +60,13 @@ Next let's continue with: `NOTE NO ERASER |RES ARE ONE TON`.
 
 Lastly, I find a way to finish the sentence with `NOTE: NO ERASER OF ORES ARE ONE TON.`
 It may not be very meaningful, but the whole process took under 10 minutes.
+
+## GUI
+The visual app can be used to navigate palindromes more quickly by clicking on the desired contination.
+
+### Windows
+Use `PalindromerVisual.exe` to open the application.
+
+### Linux/macOS
+Visit https://github.com/wxWidgets/wxWidgets to install wxWidgets onto your local machine.
+Build with `make palindromer-visual` and run with `./palindromer-visual`.
